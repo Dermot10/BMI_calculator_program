@@ -1,0 +1,89 @@
+import sys
+import os
+
+
+# Bmi calculator will compute height and weight variables and store value
+
+def bmi_calculator():
+    os.system("clear")
+    print("I want to help you with your diet. What is your (weight & height) in kg and cm")
+    weight = int(input("--> "))
+    height = int(float(input("--> ")))
+    height /= 100
+    global bmi
+    bmi = weight / (height ** 2)
+    print(bmi)
+    evaluate()
+
+
+# Major adult BMI classifications are underweight (under 18.5 kg/m2), normal weight (18.5 to 24.9), overweight (25 to 29.9), and obese (30 or more).
+
+def evaluate():
+    if bmi < 25:
+        print("You are underweight... Allow me to assist you")
+        under_weight()
+    elif bmi >= 25 and bmi < 30:
+        print("Your BMI is within a healthy range")
+    else:
+        print("You appear to be overweight... Allow me to assist you in getting into shape")
+        over_weight()
+
+
+# Suggest exercise routines based on simple preferences
+
+def under_weight():
+    os.system("clear")
+    print("So you're {}, that's a little on the light side\n " .format(bmi))
+    print("Carbs should make up a larger part of your diet, supplement this with protein\n")
+    print("Which do you prefer?... I may be able to suggest something for you\n")
+    print("(1. Chicken / 2. Beef / 3. Fish / 4. Vegeterian) ")
+    choice = input("--> ").lower()
+    if 1 == choice or "chicken" == choice:
+        print("Hmmmm i think you may enjoy teriyaki chicken or some chicken korma. \n then again maybe you'd fancy some buttermilk chicken")
+    elif 2 == choice or "beef" == choice:
+        print("You HAVE to get a cheese-burger. The best part is, since you're underweight no one will judge you! ")
+    elif 3 == choice or "fish" == choice:
+        print("You know what?.. i actually dont know many fish dishes... But since it's you I'll find one for ya............ I heard salmon is all the rage right now... ")
+    elif 4 == choice or "vegeterian" == choice:
+        print("Surely you're pulling my leg right?... Fine... have it your way... I think you should eat some chilli or lasagne... just errr, double check it's meat free ")
+    else:
+        under_weight()
+
+
+def over_weight():
+    os.system("clear")
+    print("I see your BMI is {}, that is considered overweight... " .format(bmi))
+    print("This could however be due to muscle mass, or are you trying to lose fat? (Yes / No)")
+    yes_no = input("--> ").lower()
+    if yes_no == "yes":
+        print("You should consider cutting down on some carbs,\n let me suggust some healthy options")
+        print("So tell me, what do you like?")
+        print("(1. Chicken /  2.Fish / 3. Rice / 4.Vegeterian ")
+        selection = input("--> ").lower()
+        if selection == "1" or "Chicken" == selection:
+            print(
+                "I would recommend you try some chicken madras or a slow-cooker chicken casserole")
+        elif selection == "2" or "Fish" == selection:
+            print("I heard fish is great for losing weight! You should try some 'zesty salmon with roasted beets & spinach' or some 'prawn & ginger noodles'")
+        elif selection == "3" or "Rice" == selection:
+            print(
+                "Surely you mean brown rice... well anyway, what about some mushroom risotto? ")
+        elif selection == "4" or "Vegetarian" == selection:
+            print("Wait you're vegtarian, well then how are you... nevermind... this is awkward... How about some 'Broccoli & cauliflower cheese galette with hazelnut spelt pastry'")
+        else:
+            over_weight()
+
+    else:
+        print("Congrats you must be in pretty good shape!!! ")
+
+
+print("What is your name? ")
+option = input("-->  ")
+print("Hi, {}, Are you unhappy with you weight? " .format(option))
+print("Yes / No ")
+Yes_No = input("--> ").lower()
+if Yes_No == "yes":
+    print("Thats a shame, let's see if i can help ")
+    bmi_calculator()
+elif Yes_No == "no":
+    print("That great to hear, samhave a nice day!! ")
